@@ -25,6 +25,24 @@ export const display = style({
   },
 })
 
+const headerHeight = 56
+
+export const header = style({
+  display: 'flex',
+  height: headerHeight,
+  width: '100%',
+  alignItems: 'center',
+  backgroundColor: '#FFC700',
+  paddingInline: 24,
+  position: 'sticky',
+  top: 0,
+})
+
+export const logo = style({
+  height: 32,
+  width: 'auto',
+})
+
 export const inner = style({
   height: '100%',
   overflowY: 'auto',
@@ -35,4 +53,9 @@ export const inner = style({
       border: '1px solid #eeeeee',
     },
   },
+})
+
+export const content = style({
+  height: `calc(100% - ${headerHeight}px)`,
+  width: '100%',
 })
