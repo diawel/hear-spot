@@ -18,8 +18,6 @@ const Map = () => {
   return (
     <div className={styles.container}>
       <MapTile />
-      <div />
-      <TabBar />
     </div>
   )
 }

@@ -4,6 +4,8 @@ import './globals.css'
 import * as styles from './layout.css'
 import Image from 'next/image'
 import logo from './logo.svg'
+import ArtistProvider from './artist-context'
+import TracksProvider from './track-context'
 
 const NotoSans = Noto_Sans_JP({
   weight: 'variable',
@@ -39,7 +41,11 @@ export default function RootLayout({
             <header className={styles.header}>
               <Image src={logo} alt="logo" className={styles.logo} />
             </header>
-            <div className={styles.content}>{children}</div>
+            <ArtistProvider>
+              <TracksProvider>
+                <div className={styles.content}>{children}</div>
+              </TracksProvider>
+            </ArtistProvider>
           </div>
         </div>
       </body>
