@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
 import * as styles from './layout.css'
+import Image from 'next/image'
+import logo from './logo.svg'
 
 const NotoSans = Noto_Sans_JP({
   weight: 'variable',
@@ -33,7 +35,12 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${NotoSans.className} ${styles.container}`}>
         <div className={styles.display}>
-          <div className={styles.inner}>{children}</div>
+          <div className={styles.inner}>
+            <header className={styles.header}>
+              <Image src={logo} alt="logo" className={styles.logo} />
+            </header>
+            <div className={styles.content}>{children}</div>
+          </div>
         </div>
       </body>
     </html>
