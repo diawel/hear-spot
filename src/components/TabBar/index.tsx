@@ -1,3 +1,5 @@
+'use client'
+
 import * as styles from './index.css'
 import map from './map.svg'
 import collection from './collection.svg'
