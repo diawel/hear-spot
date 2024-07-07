@@ -1,6 +1,18 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 
-const MapTile = () => {
+type MapTileProps = {
+  position: [number, number]
+}
+
+const MapCenterHandler = ({ position }: { position: [number, number] }) => {
+  const map = useMap()
+  map.panTo(position)
+
+  return null
+}
+
+const MapTile = ({ position }: MapTileProps) => {
+  console.log(position)
   return (
     <MapContainer
       center={[35.6583, 139.7048]}
@@ -17,6 +29,7 @@ const MapTile = () => {
           A pretty CSS3 popup. <br /> Easily customizable.
         </Popup>
       </Marker>
+      <MapCenterHandler position={position} />
     </MapContainer>
   )
 }
