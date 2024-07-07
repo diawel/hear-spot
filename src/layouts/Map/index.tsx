@@ -4,6 +4,8 @@ import { useEffect, useMemo } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import dynamic from 'next/dynamic'
+import * as styles from './index.css'
+import TabBar from '@/components/TabBar'
 
 const Map = () => {
   const MapTile = useMemo(
@@ -14,8 +16,10 @@ const Map = () => {
     []
   )
   return (
-    <div style={{ height: '100%' }}>
+    <div className={styles.container}>
       <MapTile />
+      <div />
+      <TabBar />
     </div>
   )
 }
