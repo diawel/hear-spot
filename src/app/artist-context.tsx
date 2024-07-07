@@ -23,27 +23,41 @@ export const useArtist = () => {
   return context
 }
 
-const ArtistProvider = ({ children }: { children: React.ReactNode }) => {
-  const [artists, setArtists] = useState<ArtistNode[]>([
-    {
-      id: '1',
-      name: 'Artist 1',
-      image: 'https://via.placeholder.com/150',
+const ArtistProvider = ({
+  children,
+  data,
+}: {
+  children: React.ReactNode
+  data: any
+}) => {
+  // const [artists, setArtists] = useState<ArtistNode[]>([
+  //   {
+  //     id: '1',
+  //     name: 'Artist 1',
+  //     image: 'https://via.placeholder.com/150',
+  //     isSelected: false,
+  //   },
+  //   {
+  //     id: '2',
+  //     name: 'Artist 2',
+  //     image: 'https://via.placeholder.com/150',
+  //     isSelected: false,
+  //   },
+  //   {
+  //     id: '3',
+  //     name: 'Artist 3',
+  //     image: 'https://via.placeholder.com/150',
+  //     isSelected: false,
+  //   },
+  // ])
+  const [artists, setArtists] = useState<ArtistNode[]>(
+    data.contents.map((artist: any) => ({
+      id: artist.id,
+      name: artist.name,
+      image: artist.image.url,
       isSelected: false,
-    },
-    {
-      id: '2',
-      name: 'Artist 2',
-      image: 'https://via.placeholder.com/150',
-      isSelected: false,
-    },
-    {
-      id: '3',
-      name: 'Artist 3',
-      image: 'https://via.placeholder.com/150',
-      isSelected: false,
-    },
-  ])
+    }))
+  )
   return (
     <ArtistContext.Provider value={{ artists, setArtists }}>
       {children}

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import logo from './logo.svg'
 import ArtistProvider from './artist-context'
 import TracksProvider from './track-context'
+import { client } from '@/utils/microcmsClient'
 
 const NotoSans = Noto_Sans_JP({
   weight: 'variable',
@@ -28,7 +29,7 @@ export const viewport: Viewport = {
   userScalable: false,
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
@@ -41,8 +42,18 @@ export default function RootLayout({
             <header className={styles.header}>
               <Image src={logo} alt="logo" className={styles.logo} />
             </header>
-            <ArtistProvider>
-              <TracksProvider>
+            <ArtistProvider
+              data={await client.getObject({
+                endpoint: 'artist',
+                queries: { limit: 100 },
+              })}
+            >
+              <TracksProvider
+                data={await client.getObject({
+                  endpoint: 'track',
+                  queries: { limit: 100 },
+                })}
+              >
                 <div className={styles.content}>{children}</div>
               </TracksProvider>
             </ArtistProvider>

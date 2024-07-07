@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react'
 
 export type TrackNode = {
   id: string
-  titile: string
+  title: string
   image: string
   artistId: string
   music: string
@@ -21,32 +21,48 @@ export const useTrack = () => {
   return context
 }
 
-const TracksProvider = ({ children }: { children: React.ReactNode }) => {
+const TracksProvider = ({
+  children,
+  data,
+}: {
+  children: React.ReactNode
+  data: any
+}) => {
   const tracks = [
     {
       id: '1',
-      titile: 'Track 1',
+      title: 'Track 1',
       image: 'https://via.placeholder.com/150',
       artistId: '1',
       music: 'https://via.placeholder.com/150',
     },
     {
       id: '2',
-      titile: 'Track 2',
+      title: 'Track 2',
       image: 'https://via.placeholder.com/150',
       artistId: '2',
       music: 'https://via.placeholder.com/150',
     },
     {
       id: '3',
-      titile: 'Track 3',
+      title: 'Track 3',
       image: 'https://via.placeholder.com/150',
       artistId: '3',
       music: 'https://via.placeholder.com/150',
     },
   ]
   return (
-    <TracksContext.Provider value={tracks}>{children}</TracksContext.Provider>
+    <TracksContext.Provider
+      value={data.contents.map((track: any) => ({
+        id: track.id,
+        title: track.title,
+        image: track.image.url,
+        artistId: track.artist.id,
+        music: track.music.url,
+      }))}
+    >
+      {children}
+    </TracksContext.Provider>
   )
 }
 
