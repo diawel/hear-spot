@@ -45,7 +45,6 @@ export const logo = style({
 
 export const inner = style({
   height: '100%',
-  overflowY: 'auto',
   backgroundColor: '#f5f5f5',
 
   '@media': {
@@ -57,5 +56,6 @@ export const inner = style({
 
 export const content = style({
   height: `calc(100% - ${headerHeight}px)`,
+  overflowY: 'auto',
   width: '100%',
 })
